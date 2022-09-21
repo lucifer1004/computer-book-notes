@@ -8,6 +8,7 @@ title = "Notes on \"Engineering a Compiler - Third Edition\""
 [output.html]
 additional-css = ["./mdbook-admonish.css"]
 mathjax-support = true
+additional-js = ["mermaid.min.js", "mermaid-init.js"]
 
 [preprocessor]
 
@@ -18,3 +19,6 @@ command = "mdbook-admonish"
 [preprocessor.toc]
 command = "mdbook-toc"
 renderer = ["html"]
+
+[preprocessor.mermaid]
+command = "mdbook-mermaid"
