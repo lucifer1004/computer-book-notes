@@ -11,10 +11,11 @@ jobs:
     name: Build, Test and Deploy
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - uses: actions-rs/toolchain@v1
         with:
           toolchain: stable
+      - uses: Swatinem/rust-cache@v2
       - run: (test -x $HOME/.cargo/bin/mdbook || cargo install mdbook)
       - run: (test -x $HOME/.cargo/bin/mdbook-admonish || cargo install mdbook-admonish)
       - run: (test -x $HOME/.cargo/bin/mdbook-mermaid || cargo install mdbook-mermaid)
