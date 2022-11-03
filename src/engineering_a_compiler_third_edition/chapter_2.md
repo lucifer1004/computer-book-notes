@@ -1,4 +1,4 @@
-# Chapter 2. Scanners
+# Chapter 2 Scanners
 
 <!-- toc -->
 

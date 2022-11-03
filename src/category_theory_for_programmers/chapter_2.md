@@ -1,4 +1,4 @@
-# Chapter 2. Types and Functions
+# Chapter 2 Types and Functions
 
 <!-- toc -->
 

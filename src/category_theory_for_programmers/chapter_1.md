@@ -1,4 +1,4 @@
-# Chapter 1. Category: The Essence of Composition
+# Chapter 1 Category: The Essence of Composition
 
 <!-- toc -->
 

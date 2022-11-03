@@ -1,4 +1,4 @@
-# Chapter 1. Overview of Compilation
+# Chapter 1 Overview of Compilation
 
 <!-- toc -->
 
