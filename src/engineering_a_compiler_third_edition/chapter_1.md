@@ -49,7 +49,7 @@ The front end contains a scanner, a parser, and an elaborator.
 - The scanner converts the stream of **characters** from the input code into a stream of **words**.
 - The parser fits the words from the scanner to a rule-based model of the input languages's syntax, called a **grammar**. During the incremental parsing process, the parser may call on the elaborator to perform additional computation.
 
- ```mermaid
+```mermaid
 flowchart LR
     S([Source Program])-->|characters|A
     subgraph FE[Front End]
@@ -59,7 +59,7 @@ flowchart LR
     B-->IR([IR])
     style S fill:#f9f,stroke-width:0
     style IR fill:#9f9,stroke-width:0
- ```
+```
 
 To check the syntax of the input program, the parser must compare the program's structure against the grammar that defines the language.
 
