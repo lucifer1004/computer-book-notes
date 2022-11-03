@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Scanners - Reading Notes</title>
+        <title>Propositional Logic - Reading Notes</title>
 
 
         <!-- Custom HTML head -->
@@ -84,7 +84,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="../engineering_a_compiler_third_edition/index.html"><strong aria-hidden="true">1.</strong> Engineering a Compiler (3rd Edition)</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../engineering_a_compiler_third_edition/chapter_1.html"><strong aria-hidden="true">1.1.</strong> Overview of Compilation</a></li><li class="chapter-item expanded "><a href="../engineering_a_compiler_third_edition/chapter_2.html" class="active"><strong aria-hidden="true">1.2.</strong> Scanners</a></li></ol></li><li class="chapter-item "><a href="../category_theory_for_programmers/index.html"><strong aria-hidden="true">2.</strong> Category Theory for Programmers</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../category_theory_for_programmers/chapter_1.html"><strong aria-hidden="true">2.1.</strong> Category: The Essence of Composition</a></li><li class="chapter-item "><a href="../category_theory_for_programmers/chapter_2.html"><strong aria-hidden="true">2.2.</strong> Types and Functions</a></li></ol></li><li class="chapter-item "><a href="../calculus_of_computation/index.html"><strong aria-hidden="true">3.</strong> The Calculus of Computation</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../calculus_of_computation/chapter_1.html"><strong aria-hidden="true">3.1.</strong> Propositional Logic</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item "><a href="../engineering_a_compiler_third_edition/index.html"><strong aria-hidden="true">1.</strong> Engineering a Compiler (3rd Edition)</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../engineering_a_compiler_third_edition/chapter_1.html"><strong aria-hidden="true">1.1.</strong> Overview of Compilation</a></li><li class="chapter-item "><a href="../engineering_a_compiler_third_edition/chapter_2.html"><strong aria-hidden="true">1.2.</strong> Scanners</a></li></ol></li><li class="chapter-item "><a href="../category_theory_for_programmers/index.html"><strong aria-hidden="true">2.</strong> Category Theory for Programmers</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../category_theory_for_programmers/chapter_1.html"><strong aria-hidden="true">2.1.</strong> Category: The Essence of Composition</a></li><li class="chapter-item "><a href="../category_theory_for_programmers/chapter_2.html"><strong aria-hidden="true">2.2.</strong> Types and Functions</a></li></ol></li><li class="chapter-item expanded "><a href="../calculus_of_computation/index.html"><strong aria-hidden="true">3.</strong> The Calculus of Computation</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../calculus_of_computation/chapter_1.html" class="active"><strong aria-hidden="true">3.1.</strong> Propositional Logic</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -145,83 +145,56 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="chapter-2-scanners"><a class="header" href="#chapter-2-scanners">Chapter 2 Scanners</a></h1>
+                        <h1 id="chapter-1-propositional-logic"><a class="header" href="#chapter-1-propositional-logic">Chapter 1 Propositional Logic</a></h1>
 <ul>
-<li><a href="#21-introduction">2.1 Introduction</a></li>
-<li><a href="#22-recognizing-words">2.2 Recognizing Words</a>
+<li><a href="#11-syntax">1.1 Syntax</a></li>
+<li><a href="#12-semantics">1.2 Semantics</a></li>
+<li><a href="#13-satisfiability-and-validity">1.3 Satisfiability and Validity</a>
 <ul>
-<li><a href="#221-a-formalism-for-recognizers">2.2.1 A Formalism for Recognizers</a></li>
-<li><a href="#222-recognizing-more-complex-words">2.2.2 Recognizing More Complex Words</a></li>
-<li><a href="#questions">Questions</a>
-<ul>
-<li><a href="#question-1-identifier-fa">Question 1 Identifier FA</a></li>
-<li><a href="#question-2-pascal-comment-fa">Question 2 PASCAL comment FA</a></li>
+<li><a href="#131-truth-tables">1.3.1 Truth Tables</a></li>
+<li><a href="#132-semantic-arguments">1.3.2 Semantic Arguments</a></li>
 </ul>
 </li>
-<li><a href="#23-regular-expressions">2.3 Regular Expressions</a></li>
+<li><a href="#14-equivalence-and-implication">1.4 Equivalence and Implication</a></li>
+<li><a href="#15-substitution">1.5 Substitution</a></li>
+<li><a href="#16-normal-forms">1.6 Normal Forms</a></li>
+<li><a href="#17-decision-procedures-for-satisfiability">1.7 Decision Procedures for Satisfiability</a>
+<ul>
+<li><a href="#171-simple-decision-procedures">1.7.1 Simple Decision Procedures</a></li>
+<li><a href="#172-reconsidering-the-truth-table-method">1.7.2 Reconsidering the Truth-Table Method</a></li>
+<li><a href="#173-conversion-to-an-equisatisfiable-formula-in-cnf">1.7.3 Conversion to an Equisatisfiable Formula in CNF</a></li>
+<li><a href="#174-the-resolution-procedure">1.7.4 The Resolution Procedure</a></li>
+<li><a href="#175-dpll">1.7.5 DPLL</a></li>
 </ul>
 </li>
+<li><a href="#18-summary">1.8 Summary</a></li>
+<li><a href="#exercises">Exercises</a></li>
 </ul>
-<h2 id="21-introduction"><a class="header" href="#21-introduction">2.1 Introduction</a></h2>
-<p>Scanner construction has a strong foundation in formal language theory. The compiler writer specifies the lexical structure of the input language using a set of regular expressions.</p>
-<p><strong>Keywords</strong>, or <strong>reserved words</strong>, are words that match the rule for an identifier but have special meanings.</p>
-<h2 id="22-recognizing-words"><a class="header" href="#22-recognizing-words">2.2 Recognizing Words</a></h2>
-<h3 id="221-a-formalism-for-recognizers"><a class="header" href="#221-a-formalism-for-recognizers">2.2.1 A Formalism for Recognizers</a></h3>
-<p>Formally, transition diagrams can be viewed as <strong>finite automata</strong>.</p>
-<p>A finite automaton is a 5-tuple: \((S,\Sigma,\delta,s_0,S_A)\):</p>
-<ul>
-<li>\(S\) is the finite set of states, including the error state \(s_e\).</li>
-</ul>
-<pre class="mermaid">flowchart LR
-    E((s_e))
-    E--&gt;|any character|E
-</pre>
-<ul>
-<li>\(\Sigma\) is the finite alphabet.</li>
-<li>\(\delta(s,c)\) is the transition function.</li>
-<li>\(s_0\) is the start state.</li>
-<li>\(S_A\) is the set of accepting states.</li>
-</ul>
-<h3 id="222-recognizing-more-complex-words"><a class="header" href="#222-recognizing-more-complex-words">2.2.2 Recognizing More Complex Words</a></h3>
-<h3 id="questions"><a class="header" href="#questions">Questions</a></h3>
-<h4 id="question-1-identifier-fa"><a class="header" href="#question-1-identifier-fa">Question 1 Identifier FA</a></h4>
-<pre class="mermaid">flowchart LR
-    S((s_0))
-    M(((s_1)))
-    T1(((s_2)))
-    T2(((s_3)))
-    T3(((s_4)))
-    T4(((s_5)))
-    T5(((s_6)))
-    S--&gt;|a...z,A...Z|M
-    M--&gt;|0...9|T1
-    T1--&gt;|0...9|T2
-    T2--&gt;|0...9|T3
-    T3--&gt;|0...9|T4
-    T4--&gt;|0...9|T5
-</pre>
-<h4 id="question-2-pascal-comment-fa"><a class="header" href="#question-2-pascal-comment-fa">Question 2 PASCAL comment FA</a></h4>
-<pre class="mermaid">flowchart LR
-    S((s_0))
-    M((s_1))
-    T(((s_2)))
-    S--&gt;|&quot;{&quot;|M
-    M--&gt;|&quot;∑-}&quot;|M
-    M--&gt;|&quot;}&quot;|T
-</pre>
-<h3 id="23-regular-expressions"><a class="header" href="#23-regular-expressions">2.3 Regular Expressions</a></h3>
+<h2 id="11-syntax"><a class="header" href="#11-syntax">1.1 Syntax</a></h2>
+<h2 id="12-semantics"><a class="header" href="#12-semantics">1.2 Semantics</a></h2>
+<h2 id="13-satisfiability-and-validity"><a class="header" href="#13-satisfiability-and-validity">1.3 Satisfiability and Validity</a></h2>
+<h3 id="131-truth-tables"><a class="header" href="#131-truth-tables">1.3.1 Truth Tables</a></h3>
+<h3 id="132-semantic-arguments"><a class="header" href="#132-semantic-arguments">1.3.2 Semantic Arguments</a></h3>
+<h2 id="14-equivalence-and-implication"><a class="header" href="#14-equivalence-and-implication">1.4 Equivalence and Implication</a></h2>
+<h2 id="15-substitution"><a class="header" href="#15-substitution">1.5 Substitution</a></h2>
+<h2 id="16-normal-forms"><a class="header" href="#16-normal-forms">1.6 Normal Forms</a></h2>
+<h2 id="17-decision-procedures-for-satisfiability"><a class="header" href="#17-decision-procedures-for-satisfiability">1.7 Decision Procedures for Satisfiability</a></h2>
+<h3 id="171-simple-decision-procedures"><a class="header" href="#171-simple-decision-procedures">1.7.1 Simple Decision Procedures</a></h3>
+<h3 id="172-reconsidering-the-truth-table-method"><a class="header" href="#172-reconsidering-the-truth-table-method">1.7.2 Reconsidering the Truth-Table Method</a></h3>
+<h3 id="173-conversion-to-an-equisatisfiable-formula-in-cnf"><a class="header" href="#173-conversion-to-an-equisatisfiable-formula-in-cnf">1.7.3 Conversion to an Equisatisfiable Formula in CNF</a></h3>
+<h3 id="174-the-resolution-procedure"><a class="header" href="#174-the-resolution-procedure">1.7.4 The Resolution Procedure</a></h3>
+<h3 id="175-dpll"><a class="header" href="#175-dpll">1.7.5 DPLL</a></h3>
+<h2 id="18-summary"><a class="header" href="#18-summary">1.8 Summary</a></h2>
+<h2 id="exercises"><a class="header" href="#exercises">Exercises</a></h2>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="../engineering_a_compiler_third_edition/chapter_1.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../calculus_of_computation/index.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next" href="../category_theory_for_programmers/index.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-                                <i class="fa fa-angle-right"></i>
-                            </a>
 
                         <div style="clear: both"></div>
                     </nav>
@@ -229,13 +202,10 @@
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="../engineering_a_compiler_third_edition/chapter_1.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../calculus_of_computation/index.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next" href="../category_theory_for_programmers/index.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-                        <i class="fa fa-angle-right"></i>
-                    </a>
             </nav>
 
         </div>
