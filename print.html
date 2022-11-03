@@ -296,25 +296,41 @@
 <li>Compatibility.</li>
 </ol>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="chapter-2-scanners"><a class="header" href="#chapter-2-scanners">Chapter 2. Scanners</a></h1>
+<ul>
+<li><a href="engineering_a_compiler_third_edition/chapter_2.html#21-introduction">2.1 Introduction</a></li>
+<li><a href="engineering_a_compiler_third_edition/chapter_2.html#22-recognizing-words">2.2 Recognizing Words</a>
+<ul>
+<li><a href="engineering_a_compiler_third_edition/chapter_2.html#221-a-formalism-for-recognizers">2.2.1 A Formalism for Recognizers</a></li>
+<li><a href="engineering_a_compiler_third_edition/chapter_2.html#222-recognizing-more-complex-words">2.2.2 Recognizing More Complex Words</a></li>
+<li><a href="engineering_a_compiler_third_edition/chapter_2.html#questions">Questions</a>
+<ul>
+<li><a href="engineering_a_compiler_third_edition/chapter_2.html#question-1-identifier-fa">Question 1 Identifier FA</a></li>
+<li><a href="engineering_a_compiler_third_edition/chapter_2.html#question-2-pascal-comment-fa">Question 2 PASCAL comment FA</a></li>
+</ul>
+</li>
+<li><a href="engineering_a_compiler_third_edition/chapter_2.html#23-regular-expressions">2.3 Regular Expressions</a></li>
+</ul>
+</li>
+</ul>
 <h2 id="21-introduction"><a class="header" href="#21-introduction">2.1 Introduction</a></h2>
 <p>Scanner construction has a strong foundation in formal language theory. The compiler writer specifies the lexical structure of the input language using a set of regular expressions.</p>
 <p><strong>Keywords</strong>, or <strong>reserved words</strong>, are words that match the rule for an identifier but have special meanings.</p>
 <h2 id="22-recognizing-words"><a class="header" href="#22-recognizing-words">2.2 Recognizing Words</a></h2>
 <h3 id="221-a-formalism-for-recognizers"><a class="header" href="#221-a-formalism-for-recognizers">2.2.1 A Formalism for Recognizers</a></h3>
 <p>Formally, transition diagrams can be viewed as <strong>finite automata</strong>.</p>
-<p>A finite automaton is a 5-tuple: $(S,\Sigma,\delta,s_0,S_A)$:</p>
+<p>A finite automaton is a 5-tuple: \((S,\Sigma,\delta,s_0,S_A)\):</p>
 <ul>
-<li>$S$ is the finite set of states, including the error state $s_e$.</li>
+<li>\(S\) is the finite set of states, including the error state \(s_e\).</li>
 </ul>
 <pre class="mermaid">flowchart LR
     E((s_e))
     E--&gt;|any character|E
 </pre>
 <ul>
-<li>$\Sigma$ is the finite alphabet.</li>
-<li>$\delta(s,c)$ is the transition function.</li>
-<li>$s_0$ is the start state.</li>
-<li>$S_A$ is the set of accepting states.</li>
+<li>\(\Sigma\) is the finite alphabet.</li>
+<li>\(\delta(s,c)\) is the transition function.</li>
+<li>\(s_0\) is the start state.</li>
+<li>\(S_A\) is the set of accepting states.</li>
 </ul>
 <h3 id="222-recognizing-more-complex-words"><a class="header" href="#222-recognizing-more-complex-words">2.2.2 Recognizing More Complex Words</a></h3>
 <h3 id="questions"><a class="header" href="#questions">Questions</a></h3>
