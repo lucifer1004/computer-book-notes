@@ -30,17 +30,15 @@ Sometimes, practical things are much more complex. For example, JAVA programs ar
 
 ```mermaid
 flowchart LR
-		S([Source Program])-->FE
+    S([Source Program])-->FE
     subgraph C[Compiler]
-      FE[Front End]-->|IR|O[Optimizer]
-      O-->|IR|BE[Back End]
+        FE[Front End]-->|IR|O[Optimizer]
+        O-->|IR|BE[Back End]
     end
     BE-->T([Target Program])
     style S fill:#f9f,stroke-width:0
     style T fill:#9f9,stroke-width:0
 ```
-
-
 
 ## 1.3 Overview of Translation
 
@@ -52,15 +50,15 @@ The front end contains a scanner, a parser, and an elaborator.
 - The parser fits the words from the scanner to a rule-based model of the input languages's syntax, called a **grammar**. During the incremental parsing process, the parser may call on the elaborator to perform additional computation.
 
  ```mermaid
- flowchart LR
-   S([Source Program])-->|characters|A
-   subgraph FE[Front End]
-     A[Scanner]-->|words|B[Parser]
-     B<-->C[Elaborator]
-   end
-   B-->IR([IR])
-   style S fill:#f9f,stroke-width:0
-   style IR fill:#9f9,stroke-width:0
+flowchart LR
+    S([Source Program])-->|characters|A
+    subgraph FE[Front End]
+        A[Scanner]-->|words|B[Parser]
+        B<-->C[Elaborator]
+    end
+    B-->IR([IR])
+    style S fill:#f9f,stroke-width:0
+    style IR fill:#9f9,stroke-width:0
  ```
 
 To check the syntax of the input program, the parser must compare the program's structure against the grammar that defines the language.

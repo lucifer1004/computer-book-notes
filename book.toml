@@ -3,12 +3,15 @@ authors = ["Gabriel Wu"]
 language = "en"
 multilingual = false
 src = "src"
-title = "Notes on \"Engineering a Compiler - Third Edition\""
+title = "Reading Notes"
 
 [output.html]
 additional-css = ["./mdbook-admonish.css"]
-mathjax-support = true
 additional-js = ["mermaid.min.js", "mermaid-init.js"]
+mathjax-support = true
+
+[output.html.fold]
+enable = true
 
 [preprocessor]
 
