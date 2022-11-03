@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Overview of Compilation - Notes on &quot;Engineering a Compiler - Third Edition&quot;</title>
+        <title>Overview of Compilation - Reading Notes</title>
 
 
         <!-- Custom HTML head -->
@@ -13,24 +13,24 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#ffffff" />
 
-        <link rel="icon" href="favicon.svg">
-        <link rel="shortcut icon" href="favicon.png">
-        <link rel="stylesheet" href="css/variables.css">
-        <link rel="stylesheet" href="css/general.css">
-        <link rel="stylesheet" href="css/chrome.css">
-        <link rel="stylesheet" href="css/print.css" media="print">
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
 
         <!-- Fonts -->
-        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
-        <link rel="stylesheet" href="fonts/fonts.css">
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
 
         <!-- Highlight.js Stylesheets -->
-        <link rel="stylesheet" href="highlight.css">
-        <link rel="stylesheet" href="tomorrow-night.css">
-        <link rel="stylesheet" href="ayu-highlight.css">
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
 
         <!-- Custom theme stylesheets -->
-        <link rel="stylesheet" href="./mdbook-admonish.css">
+        <link rel="stylesheet" href=".././mdbook-admonish.css">
 
         <!-- MathJax -->
         <script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
@@ -38,7 +38,7 @@
     <body>
         <!-- Provide site root to javascript -->
         <script type="text/javascript">
-            var path_to_root = "";
+            var path_to_root = "../";
             var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
         </script>
 
@@ -84,7 +84,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html">Introduction</a></li><li class="chapter-item expanded "><a href="chapter_1.html" class="active"><strong aria-hidden="true">1.</strong> Overview of Compilation</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../engineering_a_compiler_third_edition/index.html"><strong aria-hidden="true">1.</strong> Engineering a Compiler (3rd Edition)</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../engineering_a_compiler_third_edition/chapter_1.html" class="active"><strong aria-hidden="true">1.1.</strong> Overview of Compilation</a></li><li class="chapter-item "><a href="../engineering_a_compiler_third_edition/chapter_2.html"><strong aria-hidden="true">1.2.</strong> Scanners</a></li></ol></li><li class="chapter-item "><a href="../category_theory_for_programmers/index.html"><strong aria-hidden="true">2.</strong> Category Theory for Programmers</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../category_theory_for_programmers/chapter_1.html"><strong aria-hidden="true">2.1.</strong> Category: The Essence of Composition</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -113,10 +113,10 @@
                         </button>
                     </div>
 
-                    <h1 class="menu-title">Notes on &quot;Engineering a Compiler - Third Edition&quot;</h1>
+                    <h1 class="menu-title">Reading Notes</h1>
 
                     <div class="right-buttons">
-                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
                             <i id="print-button" class="fa fa-print"></i>
                         </a>
 
@@ -215,10 +215,10 @@
 <p>Sometimes, practical things are much more complex. For example, JAVA programs are compiled into JAVA bytecode by an AOT compiler, then interpreted by a JAVA Virtual Machine (JVM) which usually has a JIT integrated.</p>
 <h2 id="12-compiler-structure"><a class="header" href="#12-compiler-structure">1.2 Compiler Structure</a></h2>
 <pre class="mermaid">flowchart LR
-		S([Source Program])--&gt;FE
+    S([Source Program])--&gt;FE
     subgraph C[Compiler]
-      FE[Front End]--&gt;|IR|O[Optimizer]
-      O--&gt;|IR|BE[Back End]
+        FE[Front End]--&gt;|IR|O[Optimizer]
+        O--&gt;|IR|BE[Back End]
     end
     BE--&gt;T([Target Program])
     style S fill:#f9f,stroke-width:0
@@ -231,16 +231,8 @@
 <li>The scanner converts the stream of <strong>characters</strong> from the input code into a stream of <strong>words</strong>.</li>
 <li>The parser fits the words from the scanner to a rule-based model of the input languages's syntax, called a <strong>grammar</strong>. During the incremental parsing process, the parser may call on the elaborator to perform additional computation.</li>
 </ul>
-<pre class="mermaid"> flowchart LR
-   S([Source Program])--&gt;|characters|A
-   subgraph FE[Front End]
-     A[Scanner]--&gt;|words|B[Parser]
-     B&lt;--&gt;C[Elaborator]
-   end
-   B--&gt;IR([IR])
-   style S fill:#f9f,stroke-width:0
-   style IR fill:#9f9,stroke-width:0
- </pre>
+<pre class="mermaid">   style IR fill:#9f9,stroke-width:0
+</pre>
 <p>To check the syntax of the input program, the parser must compare the program's structure against the grammar that defines the language.</p>
 <p>If the parser finds a derivation (using defined grammar rules), it is proved that the input program is syntactically correct.</p>
 <h3 id="132-the-optimizer"><a class="header" href="#132-the-optimizer">1.3.2 The Optimizer</a></h3>
@@ -297,10 +289,13 @@
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="index.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../engineering_a_compiler_third_edition/index.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
+                            <a rel="next" href="../engineering_a_compiler_third_edition/chapter_2.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
 
                         <div style="clear: both"></div>
                     </nav>
@@ -308,10 +303,13 @@
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="index.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../engineering_a_compiler_third_edition/index.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
 
+                    <a rel="next" href="../engineering_a_compiler_third_edition/chapter_2.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
             </nav>
 
         </div>
@@ -324,17 +322,17 @@
         </script>
 
 
-        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
-        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
-        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
 
-        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
-        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
-        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
 
         <!-- Custom JS scripts -->
-        <script type="text/javascript" src="mermaid.min.js"></script>
-        <script type="text/javascript" src="mermaid-init.js"></script>
+        <script type="text/javascript" src="../mermaid.min.js"></script>
+        <script type="text/javascript" src="../mermaid-init.js"></script>
 
 
     </body>
