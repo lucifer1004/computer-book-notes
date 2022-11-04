@@ -1,5 +1,7 @@
 # List of books
 
+[Table of Contents](./README.md)
+
 - [Engineering a Compiler (3rd Edition)](./engineering_a_compiler_third_edition/README.md)
   - [Overview of Compilation](./engineering_a_compiler_third_edition/chapter_1.md)
   - [Scanners](./engineering_a_compiler_third_edition/chapter_2.md)

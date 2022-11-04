@@ -6,8 +6,9 @@ src = "src"
 title = "Reading Notes"
 
 [output.html]
-additional-css = ["./mdbook-admonish.css"]
+additional-css = ["./css/last-changed.css", "./css/mdbook-admonish.css"]
 additional-js = ["mermaid.min.js", "mermaid-init.js"]
+git-repository-url = "https://github.com/lucifer1004/computer-book-notes"
 mathjax-support = true
 
 [output.html.fold]
