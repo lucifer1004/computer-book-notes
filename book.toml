@@ -26,3 +26,7 @@ renderer = ["html"]
 
 [preprocessor.mermaid]
 command = "mdbook-mermaid"
+
+[preprocessor.last-changed]
+command = "mdbook-last-changed"
+renderer = ["html"]

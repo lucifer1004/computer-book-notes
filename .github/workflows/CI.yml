@@ -20,6 +20,7 @@ jobs:
       - run: (test -x $HOME/.cargo/bin/mdbook-admonish || cargo install mdbook-admonish)
       - run: (test -x $HOME/.cargo/bin/mdbook-mermaid || cargo install mdbook-mermaid)
       - run: (test -x $HOME/.cargo/bin/mdbook-toc || cargo install mdbook-toc)
+      - run: (test -x $HOME/.cargo/bin/mdbook-last-changed || cargo install mdbook-last-changed)
       - run: mdbook build && mdbook test # In case of custom book path: mdbook build path/to/mybook && mdbook test path/to/mybook
       - uses: JamesIves/github-pages-deploy-action@4.1.7
         with:
