@@ -20,7 +20,7 @@ Here, sets can be finite or infinite.
 
 Ideally we can consider types to be sets and functions to be mathematical functions between sets. But we will encounter the halting problem since there are functions that never terminate. That is why we introduce \\(\bot\\), which means a non-terminating computation. So a function with the following signature:
 
-```rust
+```rust, ignore
 fn f(x: bool) -> bool {}
 ```
 
@@ -28,7 +28,7 @@ may return `true`, `false`, or \\(\bot\\).
 
 For example, the following program:
 
-```rust
+```rust, ignore
 {{#rustdoc_include code/ch02/non_terminating.rs}}
 ```
 
@@ -97,7 +97,7 @@ This cannot be reached.
 
 ### Challenge 2.3 Memoize RNG with seed
 
-```rust
+```rust, ignore
 {{#rustdoc_include code/ch02/memoize_rng.rs}}
 ```
 
