@@ -10,3 +10,5 @@
   - [Types and Functions](./category_theory_for_programmers/chapter_2.md)
 - [The Calculus of Computation](./calculus_of_computation/README.md)
   - [Propositional Logic](./calculus_of_computation/chapter_1.md)
+- [Geometric Data Structures for Computer Graphics](./geometric_data_structures_for_computer_graphics/README.md)
+  - [Quadtrees and Octrees](./geometric_data_structures_for_computer_graphics/chapter_1.md)

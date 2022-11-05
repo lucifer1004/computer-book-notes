@@ -7,6 +7,7 @@ This site contains my notes of a few computer science & programming books.
 - [Engineering a Compiler (3rd Edition)](./engineering_a_compiler_third_edition/)
 - [Category Theory for Programmers](./category_theory_for_programmers/)
 - [The Calculus of Computation](./calculus_of_computation/)
+- [Geometric Data Structures for Computer Graphics](./geometric_data_structures_for_computer_graphics/)
 
 ## About Me
 
