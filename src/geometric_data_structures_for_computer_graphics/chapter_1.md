@@ -1,5 +1,7 @@
 # Quadtrees and Octrees
 
+<!-- toc -->
+
 ## 1.1 Definition
 
 Binary tree -> Quadtree -> Octree.

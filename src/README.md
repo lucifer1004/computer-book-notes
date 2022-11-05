@@ -8,6 +8,7 @@ This site contains my notes of a few computer science & programming books.
 - [Category Theory for Programmers](./category_theory_for_programmers/)
 - [The Calculus of Computation](./calculus_of_computation/)
 - [Geometric Data Structures for Computer Graphics](./geometric_data_structures_for_computer_graphics/)
+- [Patterns for Parallel Programming](./patterns_for_parallel_programming/)
 
 ## About Me
 

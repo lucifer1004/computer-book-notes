@@ -12,3 +12,7 @@
   - [Propositional Logic](./calculus_of_computation/chapter_1.md)
 - [Geometric Data Structures for Computer Graphics](./geometric_data_structures_for_computer_graphics/README.md)
   - [Quadtrees and Octrees](./geometric_data_structures_for_computer_graphics/chapter_1.md)
+- [Patterns for Parallel Programming](./patterns_for_parallel_programming/README.md)
+  - [A Pattern Language for Parallel Programming](./patterns_for_parallel_programming/chapter_1.md)
+  - [Background and Jargon of Parallel Computing](./patterns_for_parallel_programming/chapter_2.md)
+  - [The Finding Concurrency Design Space](./patterns_for_parallel_programming/chapter_3.md)
