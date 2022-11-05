@@ -85,7 +85,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item affix "><a href="../index.html">Table of Contents</a></li><li class="chapter-item "><a href="../engineering_a_compiler_third_edition/index.html"><strong aria-hidden="true">1.</strong> Engineering a Compiler (3rd Edition)</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../engineering_a_compiler_third_edition/chapter_1.html"><strong aria-hidden="true">1.1.</strong> Overview of Compilation</a></li><li class="chapter-item "><a href="../engineering_a_compiler_third_edition/chapter_2.html"><strong aria-hidden="true">1.2.</strong> Scanners</a></li></ol></li><li class="chapter-item expanded "><a href="../category_theory_for_programmers/index.html"><strong aria-hidden="true">2.</strong> Category Theory for Programmers</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../category_theory_for_programmers/chapter_1.html"><strong aria-hidden="true">2.1.</strong> Category: The Essence of Composition</a></li><li class="chapter-item expanded "><a href="../category_theory_for_programmers/chapter_2.html" class="active"><strong aria-hidden="true">2.2.</strong> Types and Functions</a></li></ol></li><li class="chapter-item "><a href="../calculus_of_computation/index.html"><strong aria-hidden="true">3.</strong> The Calculus of Computation</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../calculus_of_computation/chapter_1.html"><strong aria-hidden="true">3.1.</strong> Propositional Logic</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item affix "><a href="../index.html">Table of Contents</a></li><li class="chapter-item "><a href="../engineering_a_compiler_third_edition/index.html"><strong aria-hidden="true">1.</strong> Engineering a Compiler (3rd Edition)</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../engineering_a_compiler_third_edition/chapter_1.html"><strong aria-hidden="true">1.1.</strong> Overview of Compilation</a></li><li class="chapter-item "><a href="../engineering_a_compiler_third_edition/chapter_2.html"><strong aria-hidden="true">1.2.</strong> Scanners</a></li></ol></li><li class="chapter-item expanded "><a href="../category_theory_for_programmers/index.html"><strong aria-hidden="true">2.</strong> Category Theory for Programmers</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../category_theory_for_programmers/chapter_1.html"><strong aria-hidden="true">2.1.</strong> Category: The Essence of Composition</a></li><li class="chapter-item expanded "><a href="../category_theory_for_programmers/chapter_2.html" class="active"><strong aria-hidden="true">2.2.</strong> Types and Functions</a></li></ol></li><li class="chapter-item "><a href="../calculus_of_computation/index.html"><strong aria-hidden="true">3.</strong> The Calculus of Computation</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../calculus_of_computation/chapter_1.html"><strong aria-hidden="true">3.1.</strong> Propositional Logic</a></li></ol></li><li class="chapter-item "><a href="../geometric_data_structures_for_computer_graphics/index.html"><strong aria-hidden="true">4.</strong> Geometric Data Structures for Computer Graphics</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../geometric_data_structures_for_computer_graphics/chapter_1.html"><strong aria-hidden="true">4.1.</strong> Quadtrees and Octrees</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -154,6 +154,19 @@
 <li><a href="#21-who-needs-types">2.1 Who Needs Types</a></li>
 <li><a href="#22-types-are-about-composability">2.2 Types Are About Composability</a></li>
 <li><a href="#23-what-are-types">2.3 What Are Types?</a></li>
+<li><a href="#24-why-do-we-need-a-mathematical-model">2.4 Why Do We Need a Mathematical Model?</a></li>
+<li><a href="#25-pure-and-dirty-functions">2.5 Pure and Dirty Functions</a></li>
+<li><a href="#26-examples-of-types">2.6 Examples of Types</a></li>
+<li><a href="#27-challenges">2.7 Challenges</a>
+<ul>
+<li><a href="#challenge-21-higher-order-memoize">Challenge 2.1 Higher-order <code>memoize</code></a></li>
+<li><a href="#challenge-22-memoize-rng">Challenge 2.2 Memoize RNG</a></li>
+<li><a href="#challenge-23-memoize-rng-with-seed">Challenge 2.3 Memoize RNG with seed</a></li>
+<li><a href="#challenge-24-which-is-pure">Challenge 2.4 Which is pure</a></li>
+<li><a href="#challenge-25-bool-to-bool">Challenge 2.5 Bool to Bool</a></li>
+<li><a href="#challenge-26-draw-category">Challenge 2.6 Draw category</a></li>
+</ul>
+</li>
 </ul>
 <h2 id="21-who-needs-types"><a class="header" href="#21-who-needs-types">2.1 Who Needs Types</a></h2>
 <div id="admonition-quote" class="admonition quote">
@@ -167,7 +180,172 @@
 </div>
 <h2 id="22-types-are-about-composability"><a class="header" href="#22-types-are-about-composability">2.2 Types Are About Composability</a></h2>
 <h2 id="23-what-are-types"><a class="header" href="#23-what-are-types">2.3 What Are Types?</a></h2>
-<footer id="last-change">Last change: 2022-11-04, commit: <a href="https://github.com/lucifer1004/computer-book-notes/commit/95d1c19">95d1c19</a></footer>
+<div id="admonition-quote-1" class="admonition quote">
+<div class="admonition-title">
+<p>Quote</p>
+<p><a class="admonition-anchor-link" href="#admonition-quote-1"></a></p>
+</div>
+<div>
+<p>The simplest intuition for types is that they are <strong>set</strong> of values.</p>
+</div>
+</div>
+<p>Here, sets can be finite or infinite.</p>
+<p>Ideally we can consider types to be sets and functions to be mathematical functions between sets. But we will encounter the halting problem since there are functions that never terminate. That is why we introduce \(\bot\), which means a non-terminating computation. So a function with the following signature:</p>
+<pre><code class="language-rust  ignore">fn f(x: bool) -&gt; bool {}
+</code></pre>
+<p>may return <code>true</code>, <code>false</code>, or \(\bot\).</p>
+<p>For example, the following program:</p>
+<pre><code class="language-rust  ignore">fn f(x: bool) -&gt; bool {
+    !f(x)
+}
+
+fn main() {
+    println!(&quot;{}&quot;, f(true));
+}
+</code></pre>
+<p>compiles but never terminate.</p>
+<p>Such functions are called <strong>partial functions</strong>, as opposed to <strong>total functions</strong>, which return valid results for every possible argument.</p>
+<h2 id="24-why-do-we-need-a-mathematical-model"><a class="header" href="#24-why-do-we-need-a-mathematical-model">2.4 Why Do We Need a Mathematical Model?</a></h2>
+<div id="admonition-quote-2" class="admonition quote">
+<div class="admonition-title">
+<p>Quote</p>
+<p><a class="admonition-anchor-link" href="#admonition-quote-2"></a></p>
+</div>
+<div>
+<p>The problem is that it's very hard to prove things about programs using operational semantics.</p>
+</div>
+</div>
+<p>An alternative is <em>denotational semantics</em>, which is based on math.</p>
+<p>Difficulty: computational effects (e.g., I/O)</p>
+<p>Solution: mapping to monads (by Eugenio Moggi)</p>
+<div id="admonition-quote-3" class="admonition quote">
+<div class="admonition-title">
+<p>Quote</p>
+<p><a class="admonition-anchor-link" href="#admonition-quote-3"></a></p>
+</div>
+<div>
+<p>One of the important advantages of having a mathematical model for programming is that it’s possible to perform formal proofs of correctness of software.</p>
+</div>
+</div>
+<h2 id="25-pure-and-dirty-functions"><a class="header" href="#25-pure-and-dirty-functions">2.5 Pure and Dirty Functions</a></h2>
+<div id="admonition-what-is-a-pure-function" class="admonition note">
+<div class="admonition-title">
+<p>What is a pure function?</p>
+<p><a class="admonition-anchor-link" href="#admonition-what-is-a-pure-function"></a></p>
+</div>
+<div>
+<p>A <strong>pure function</strong> is a function which is guaranteed to produce the same output every time it's called with the same input, and has no side effects.</p>
+</div>
+</div>
+<h2 id="26-examples-of-types"><a class="header" href="#26-examples-of-types">2.6 Examples of Types</a></h2>
+<p>Empty set: Haskell <code>Void</code> (not C++ <code>void</code>, which is actually <code>unit</code>).</p>
+<p>Singleton set: C++ <code>void</code>, Haskell/Rust <code>()</code>.</p>
+<p>A function without explicit arguments does not mean it takes nothing. This is best shown in Haskell:</p>
+<pre><code class="language-haskell">f44 :: () -&gt; Integer 
+f44 () = 44
+</code></pre>
+<p>The function <code>f44</code> above obviously takes <code>()</code>, which is the only element in the singleton unit set.</p>
+<div id="admonition-quote-4" class="admonition quote">
+<div class="admonition-title">
+<p>Quote</p>
+<p><a class="admonition-anchor-link" href="#admonition-quote-4"></a></p>
+</div>
+<div>
+<p>Functions that can be implemented with the same formula for any type are called parametrically polymorphic.</p>
+</div>
+</div>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>fn unit&lt;T&gt;(x: T) {}
+<span class="boring">}
+</span></code></pre></pre>
+<p>Two-element set: C++/Rust <code>bool</code>, Haskell <code>Bool</code>. Functions to these two-element sets are called <em>predicates</em>.</p>
+<h2 id="27-challenges"><a class="header" href="#27-challenges">2.7 Challenges</a></h2>
+<h3 id="challenge-21-higher-order-memoize"><a class="header" href="#challenge-21-higher-order-memoize">Challenge 2.1 Higher-order <code>memoize</code></a></h3>
+<pre><pre class="playground"><code class="language-rust">use std::collections::HashMap;
+use std::hash::Hash;
+
+fn memoize&lt;A, B, F&gt;(f: F) -&gt; impl FnMut(A) -&gt; B
+where
+    F: Fn(A) -&gt; B,
+    A: Eq + Hash + Clone,
+    B: Clone,
+{
+    let mut cache: HashMap&lt;A, B&gt; = HashMap::new();
+    move |arg| {
+        if let Some(result) = cache.get(&amp;arg) {
+            result.clone()
+        } else {
+            println!(&quot;Evaluated!&quot;);
+            let result = f(arg.clone());
+            cache.insert(arg, result.clone());
+            result
+        }
+    }
+}
+
+fn main() {
+    let mut f = memoize(|n| 2 * n);
+    println!(&quot;{}&quot;, f(20)); // First-time call, evaluated
+    println!(&quot;{}&quot;, f(20)); // Memoization used
+}
+</code></pre></pre>
+<h3 id="challenge-22-memoize-rng"><a class="header" href="#challenge-22-memoize-rng">Challenge 2.2 Memoize RNG</a></h3>
+<p>This cannot be reached.</p>
+<h3 id="challenge-23-memoize-rng-with-seed"><a class="header" href="#challenge-23-memoize-rng-with-seed">Challenge 2.3 Memoize RNG with seed</a></h3>
+<pre><code class="language-rust  ignore">extern crate rand;
+extern crate rand_chacha;
+use rand::prelude::*;
+use rand_chacha::ChaCha8Rng;
+
+fn main() {
+    let mut memoized_rng = |seed: u64| {
+        let mut rng = ChaCha8Rng::seed_from_u64(seed);
+        rng.gen::&lt;u64&gt;()
+    };
+    println!(&quot;{}&quot;, memoized_rng(0));
+    println!(&quot;{}&quot;, memoized_rng(0));
+    println!(&quot;{}&quot;, memoized_rng(1));
+    println!(&quot;{}&quot;, memoized_rng(1));
+}
+</code></pre>
+<h3 id="challenge-24-which-is-pure"><a class="header" href="#challenge-24-which-is-pure">Challenge 2.4 Which is pure</a></h3>
+<p>The factorial function is pure. Other functions have side effects (input, output, global state).</p>
+<h3 id="challenge-25-bool-to-bool"><a class="header" href="#challenge-25-bool-to-bool">Challenge 2.5 Bool to Bool</a></h3>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>fn id(x: bool) -&gt; bool {
+    x
+}
+
+fn not(x: bool) -&gt; bool {
+    !x
+}
+
+fn always_true(x: bool) -&gt; bool {
+    true
+}
+
+fn always_false(x: bool) -&gt; bool {
+    false
+}
+<span class="boring">}
+</span></code></pre></pre>
+<h3 id="challenge-26-draw-category"><a class="header" href="#challenge-26-draw-category">Challenge 2.6 Draw category</a></h3>
+<pre class="mermaid">flowchart LR
+    Void
+    Unit
+    Unit --&gt;|id| Unit
+    Bool
+    Bool --&gt;|unit| Unit
+    Unit --&gt;|true| Bool
+    Unit --&gt;|false| Bool
+    Bool --&gt;|id| Bool
+    Bool --&gt;|not| Bool
+    Bool --&gt;|true| Bool
+    Bool --&gt;|false| Bool
+</pre>
+<footer id="last-change">Last change: 2022-11-05, commit: <a href="https://github.com/lucifer1004/computer-book-notes/commit/c9c67b6">c9c67b6</a></footer>
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
