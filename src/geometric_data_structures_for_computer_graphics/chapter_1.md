@@ -1,4 +1,4 @@
-# Quadtrees and Octrees
+# Chapter 1 Quadtrees and Octrees
 
 <!-- toc -->
 

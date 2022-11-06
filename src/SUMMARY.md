@@ -16,3 +16,5 @@
   - [A Pattern Language for Parallel Programming](./patterns_for_parallel_programming/chapter_1.md)
   - [Background and Jargon of Parallel Computing](./patterns_for_parallel_programming/chapter_2.md)
   - [The Finding Concurrency Design Space](./patterns_for_parallel_programming/chapter_3.md)
+- [Structured Parallel Programming](./structured_parallel_programming/README.md)
+  - [Introduction](./structured_parallel_programming/chapter_1.md)

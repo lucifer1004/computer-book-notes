@@ -1,4 +1,4 @@
-# The Finding Concurrency Design Space
+# Chapter 3 The Finding Concurrency Design Space
 
 <!-- toc -->
 

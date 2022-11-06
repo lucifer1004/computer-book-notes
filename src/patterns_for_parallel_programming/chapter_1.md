@@ -1,4 +1,4 @@
-# A Pattern Language for Parallel Programming
+# Chapter 1 A Pattern Language for Parallel Programming
 
 <!-- toc -->
 

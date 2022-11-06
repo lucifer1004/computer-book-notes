@@ -1,4 +1,4 @@
-# Background and Jargon of Parallel Computing
+# Chapter 2 Background and Jargon of Parallel Computing
 
 <!-- toc -->
 
