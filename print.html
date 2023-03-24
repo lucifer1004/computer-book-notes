@@ -9,7 +9,6 @@
 
         <!-- Custom HTML head -->
         
-        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#ffffff" />
@@ -35,17 +34,18 @@
         <link rel="stylesheet" href="./css/mdbook-admonish.css">
 
         <!-- MathJax -->
-        <script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     </head>
     <body>
+    <div id="body-container">
         <!-- Provide site root to javascript -->
-        <script type="text/javascript">
+        <script>
             var path_to_root = "";
             var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
         </script>
 
         <!-- Work around some values being stored in localStorage wrapped in quotes -->
-        <script type="text/javascript">
+        <script>
             try {
                 var theme = localStorage.getItem('mdbook-theme');
                 var sidebar = localStorage.getItem('mdbook-sidebar');
@@ -61,7 +61,7 @@
         </script>
 
         <!-- Set the theme before any content is loaded, prevents flash -->
-        <script type="text/javascript">
+        <script>
             var theme;
             try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
             if (theme === null || theme === undefined) { theme = default_theme; }
@@ -73,12 +73,14 @@
         </script>
 
         <!-- Hide / unhide sidebar before it is displayed -->
-        <script type="text/javascript">
+        <script>
             var html = document.querySelector('html');
-            var sidebar = 'hidden';
+            var sidebar = null;
             if (document.body.clientWidth >= 1080) {
                 try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
                 sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
             }
             html.classList.remove('sidebar-visible');
             html.classList.add("sidebar-" + sidebar);
@@ -104,7 +106,7 @@
                             <i class="fa fa-paint-brush"></i>
                         </button>
                         <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
-                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
@@ -140,7 +142,7 @@
                 </div>
 
                 <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
-                <script type="text/javascript">
+                <script>
                     document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
                     document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
                     Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
@@ -312,7 +314,7 @@
 <li>Parallel.</li>
 <li>Compatibility.</li>
 </ol>
-<footer id="last-change">Last change: 2022-11-06, commit: <a href="https://github.com/lucifer1004/computer-book-notes/commit/0b2cfb2">0b2cfb2</a></footer><div style="break-before: page; page-break-before: always;"></div><h1 id="chapter-2-scanners"><a class="header" href="#chapter-2-scanners">Chapter 2 Scanners</a></h1>
+<footer id="last-change">Last change: 2023-03-24, commit: <a href="https://github.com/lucifer1004/computer-book-notes/commit/65ebabe">65ebabe</a></footer><div style="break-before: page; page-break-before: always;"></div><h1 id="chapter-2-scanners"><a class="header" href="#chapter-2-scanners">Chapter 2 Scanners</a></h1>
 <ul>
 <li><a href="engineering_a_compiler_third_edition/chapter_2.html#21-introduction">2.1 Introduction</a></li>
 <li><a href="engineering_a_compiler_third_edition/chapter_2.html#22-recognizing-words">2.2 Recognizing Words</a>
@@ -377,7 +379,7 @@
     M--&gt;|&quot;}&quot;|T
 </pre>
 <h3 id="23-regular-expressions"><a class="header" href="#23-regular-expressions">2.3 Regular Expressions</a></h3>
-<footer id="last-change">Last change: 2022-11-06, commit: <a href="https://github.com/lucifer1004/computer-book-notes/commit/0b2cfb2">0b2cfb2</a></footer><div style="break-before: page; page-break-before: always;"></div><h1 id="category-theory-for-programmers"><a class="header" href="#category-theory-for-programmers">Category Theory for Programmers</a></h1>
+<footer id="last-change">Last change: 2023-03-24, commit: <a href="https://github.com/lucifer1004/computer-book-notes/commit/65ebabe">65ebabe</a></footer><div style="break-before: page; page-break-before: always;"></div><h1 id="category-theory-for-programmers"><a class="header" href="#category-theory-for-programmers">Category Theory for Programmers</a></h1>
 <p>This book contains my notes on <em>Category Theory for Programmers</em> by <a href="https://github.com/BartoszMilewski"><strong>Bartosz Milewski</strong></a>.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="chapter-1-category-the-essence-of-composition"><a class="header" href="#chapter-1-category-the-essence-of-composition">Chapter 1 Category: The Essence of Composition</a></h1>
 <ul>
@@ -441,8 +443,7 @@ fn main() {
     assert_eq!(id(1), 1);
     assert_eq!(id(1.0), 1.0);
     assert_eq!(id(&quot;1&quot;), &quot;1&quot;);
-}
-</code></pre></pre>
+}</code></pre></pre>
 <h3 id="challenge-12-implement-composition"><a class="header" href="#challenge-12-implement-composition">Challenge 1.2 Implement composition</a></h3>
 <p>Composition function in Rust:</p>
 <pre><pre class="playground"><code class="language-rust">macro_rules! compose {
@@ -462,8 +463,7 @@ fn main() {
     let h = |x| x ^ 100;
     let fgh = compose!(f, g, h);
     assert_eq!(fgh(3), 108);
-}
-</code></pre></pre>
+}</code></pre></pre>
 <h3 id="challenge-13-validate-composition"><a class="header" href="#challenge-13-validate-composition">Challenge 1.3 Validate composition</a></h3>
 <pre><pre class="playground"><code class="language-rust"><span class="boring">macro_rules! compose {
 </span><span class="boring">    ( $last:expr ) =&gt; { $last };
@@ -485,8 +485,7 @@ fn main() {
     let f_then_id = compose!(f, id);
     let id_then_f = compose!(id, f);
     assert_eq!(f_then_id(5), id_then_f(5));
-}
-</code></pre></pre>
+}</code></pre></pre>
 <h3 id="challenge-14-world-wide-web"><a class="header" href="#challenge-14-world-wide-web">Challenge 1.4 World-wide web</a></h3>
 <p>It depends on how we define the arrows whether the world-wide web can be considered a category. The web pages are objects without doubt. If we define the arrows as links, then <code>A-&gt;B</code> and <code>B-&gt;C</code> does not necessarily imply <code>A-&gt;C</code> because there might not be a direct link from <code>A</code> to <code>C</code>, and in this case the world-wide web is not a category. However, if we define the arrows as sequences of links, we can safely assume that <code>A-&gt;B</code> and <code>B-&gt;C</code> implies <code>A-&gt;C</code>, and thus the world-wide web can be a category.</p>
 <p>See also Challenge 1.6.</p>
@@ -494,7 +493,7 @@ fn main() {
 <p>Facebook is not a category because friendship cannot be composed. Having <code>A-&gt;B</code> and <code>B-&gt;C</code> does not necessarily imply <code>A-&gt;C</code>.</p>
 <h3 id="challenge-16-directed-graph"><a class="header" href="#challenge-16-directed-graph">Challenge 1.6 Directed graph</a></h3>
 <p>A directed graph is a category if every node has a self link, and for every triplets <code>A, B, C</code>, if there is an edge <code>A-&gt;B</code> and an edge <code>B-&gt;C</code>, then there must be an edge <code>A-&gt;C</code>.</p>
-<footer id="last-change">Last change: 2022-11-06, commit: <a href="https://github.com/lucifer1004/computer-book-notes/commit/0b2cfb2">0b2cfb2</a></footer><div style="break-before: page; page-break-before: always;"></div><h1 id="chapter-2-types-and-functions"><a class="header" href="#chapter-2-types-and-functions">Chapter 2 Types and Functions</a></h1>
+<footer id="last-change">Last change: 2023-03-24, commit: <a href="https://github.com/lucifer1004/computer-book-notes/commit/65ebabe">65ebabe</a></footer><div style="break-before: page; page-break-before: always;"></div><h1 id="chapter-2-types-and-functions"><a class="header" href="#chapter-2-types-and-functions">Chapter 2 Types and Functions</a></h1>
 <ul>
 <li><a href="category_theory_for_programmers/chapter_2.html#21-who-needs-types">2.1 Who Needs Types</a></li>
 <li><a href="category_theory_for_programmers/chapter_2.html#22-types-are-about-composability">2.2 Types Are About Composability</a></li>
@@ -536,8 +535,7 @@ fn main() {
 </div>
 <p>Here, sets can be finite or infinite.</p>
 <p>Ideally we can consider types to be sets and functions to be mathematical functions between sets. But we will encounter the halting problem since there are functions that never terminate. That is why we introduce \(\bot\), which means a non-terminating computation. So a function with the following signature:</p>
-<pre><code class="language-rust  ignore">fn f(x: bool) -&gt; bool {}
-</code></pre>
+<pre><code class="language-rust  ignore">fn f(x: bool) -&gt; bool {}</code></pre>
 <p>may return <code>true</code>, <code>false</code>, or \(\bot\).</p>
 <p>For example, the following program:</p>
 <pre><code class="language-rust  ignore">fn f(x: bool) -&gt; bool {
@@ -546,8 +544,7 @@ fn main() {
 
 fn main() {
     println!(&quot;{}&quot;, f(true));
-}
-</code></pre>
+}</code></pre>
 <p>compiles but never terminate.</p>
 <p>Such functions are called <strong>partial functions</strong>, as opposed to <strong>total functions</strong>, which return valid results for every possible argument.</p>
 <h2 id="24-why-do-we-need-a-mathematical-model"><a class="header" href="#24-why-do-we-need-a-mathematical-model">2.4 Why Do We Need a Mathematical Model?</a></h2>
@@ -602,8 +599,7 @@ f44 () = 44
 <pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>fn unit&lt;T&gt;(x: T) {}
-<span class="boring">}
-</span></code></pre></pre>
+<span class="boring">}</span></code></pre></pre>
 <p>Two-element set: C++/Rust <code>bool</code>, Haskell <code>Bool</code>. Functions to these two-element sets are called <em>predicates</em>.</p>
 <h2 id="27-challenges"><a class="header" href="#27-challenges">2.7 Challenges</a></h2>
 <h3 id="challenge-21-higher-order-memoize"><a class="header" href="#challenge-21-higher-order-memoize">Challenge 2.1 Higher-order <code>memoize</code></a></h3>
@@ -633,8 +629,7 @@ fn main() {
     let mut f = memoize(|n| 2 * n);
     println!(&quot;{}&quot;, f(20)); // First-time call, evaluated
     println!(&quot;{}&quot;, f(20)); // Memoization used
-}
-</code></pre></pre>
+}</code></pre></pre>
 <h3 id="challenge-22-memoize-rng"><a class="header" href="#challenge-22-memoize-rng">Challenge 2.2 Memoize RNG</a></h3>
 <p>This cannot be reached.</p>
 <h3 id="challenge-23-memoize-rng-with-seed"><a class="header" href="#challenge-23-memoize-rng-with-seed">Challenge 2.3 Memoize RNG with seed</a></h3>
@@ -652,8 +647,7 @@ fn main() {
     println!(&quot;{}&quot;, memoized_rng(0));
     println!(&quot;{}&quot;, memoized_rng(1));
     println!(&quot;{}&quot;, memoized_rng(1));
-}
-</code></pre>
+}</code></pre>
 <h3 id="challenge-24-which-is-pure"><a class="header" href="#challenge-24-which-is-pure">Challenge 2.4 Which is pure</a></h3>
 <p>The factorial function is pure. Other functions have side effects (input, output, global state).</p>
 <h3 id="challenge-25-bool-to-bool"><a class="header" href="#challenge-25-bool-to-bool">Challenge 2.5 Bool to Bool</a></h3>
@@ -674,8 +668,7 @@ fn always_true(x: bool) -&gt; bool {
 fn always_false(x: bool) -&gt; bool {
     false
 }
-<span class="boring">}
-</span></code></pre></pre>
+<span class="boring">}</span></code></pre></pre>
 <h3 id="challenge-26-draw-category"><a class="header" href="#challenge-26-draw-category">Challenge 2.6 Draw category</a></h3>
 <pre class="mermaid">flowchart LR
     Void
@@ -690,7 +683,7 @@ fn always_false(x: bool) -&gt; bool {
     Bool --&gt;|true| Bool
     Bool --&gt;|false| Bool
 </pre>
-<footer id="last-change">Last change: 2022-11-06, commit: <a href="https://github.com/lucifer1004/computer-book-notes/commit/0b2cfb2">0b2cfb2</a></footer><div style="break-before: page; page-break-before: always;"></div><h1 id="the-calculus-of-computation"><a class="header" href="#the-calculus-of-computation">The Calculus of Computation</a></h1>
+<footer id="last-change">Last change: 2023-03-24, commit: <a href="https://github.com/lucifer1004/computer-book-notes/commit/65ebabe">65ebabe</a></footer><div style="break-before: page; page-break-before: always;"></div><h1 id="the-calculus-of-computation"><a class="header" href="#the-calculus-of-computation">The Calculus of Computation</a></h1>
 <p>This book contains my notes on <em>The Calculus of Computation</em> by <a href="https://theory.stanford.edu/~arbrad/"><strong>Aaron R. Bradley</strong></a> and <a href="https://theory.stanford.edu/~zm/"><strong>Zohar Manna</strong></a>.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="chapter-1-propositional-logic"><a class="header" href="#chapter-1-propositional-logic">Chapter 1 Propositional Logic</a></h1>
 <ul>
@@ -753,7 +746,7 @@ fn always_false(x: bool) -&gt; bool {
 <h3 id="175-dpll"><a class="header" href="#175-dpll">1.7.5 DPLL</a></h3>
 <h2 id="18-summary"><a class="header" href="#18-summary">1.8 Summary</a></h2>
 <h2 id="exercises-1"><a class="header" href="#exercises-1">Exercises</a></h2>
-<footer id="last-change">Last change: 2022-11-06, commit: <a href="https://github.com/lucifer1004/computer-book-notes/commit/0b2cfb2">0b2cfb2</a></footer><div style="break-before: page; page-break-before: always;"></div><h1 id="geometric-data-structures-for-computer-graphics"><a class="header" href="#geometric-data-structures-for-computer-graphics">Geometric Data Structures for Computer Graphics</a></h1>
+<footer id="last-change">Last change: 2023-03-24, commit: <a href="https://github.com/lucifer1004/computer-book-notes/commit/65ebabe">65ebabe</a></footer><div style="break-before: page; page-break-before: always;"></div><h1 id="geometric-data-structures-for-computer-graphics"><a class="header" href="#geometric-data-structures-for-computer-graphics">Geometric Data Structures for Computer Graphics</a></h1>
 <p>This book contains my notes on <em>Geometric Data Structures for Computer Graphics</em> by <a href="https://www.i1.cs.uni-bonn.de/doku.php?id=staff:elmarlangetepe"><strong>Elmar Langetepe</strong></a> and <a href="https://www.cs.uni-bremen.de/~zach/"><strong>Gabriel Zachmann</strong></a>.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="chapter-1-quadtrees-and-octrees"><a class="header" href="#chapter-1-quadtrees-and-octrees">Chapter 1 Quadtrees and Octrees</a></h1>
 <ul>
@@ -809,7 +802,7 @@ fn always_false(x: bool) -&gt; bool {
 <p>Rays are essentially <strong>static</strong> objects, just like the geometry of the scene!</p>
 <p>Discretize the rays based on the direction cube. There is a one-to-one mapping between direction vectors and points on all six sides of the cube.</p>
 <p>We need six 5D octrees, one for each side. For a given side, the \(xyz\)-intervals define a box, and the remaining \(uv\) intervals define a cone.</p>
-<footer id="last-change">Last change: 2022-11-06, commit: <a href="https://github.com/lucifer1004/computer-book-notes/commit/0b2cfb2">0b2cfb2</a></footer><div style="break-before: page; page-break-before: always;"></div><h1 id="patterns-for-parallel-programming"><a class="header" href="#patterns-for-parallel-programming">Patterns for Parallel Programming</a></h1>
+<footer id="last-change">Last change: 2023-03-24, commit: <a href="https://github.com/lucifer1004/computer-book-notes/commit/65ebabe">65ebabe</a></footer><div style="break-before: page; page-break-before: always;"></div><h1 id="patterns-for-parallel-programming"><a class="header" href="#patterns-for-parallel-programming">Patterns for Parallel Programming</a></h1>
 <p>This book contains my notes on <em>Patterns for Parallel Programming</em> by <a href="http://timmattson.com/work/"><strong>Timothy G. Mattson</strong></a>, <a href="https://www.eng.ufl.edu/about/contact/college-directory/name/beverly-sanders/"><strong>Beverly A. Sanders</strong></a> and <a href="https://www.cs.trinity.edu/~bmassing/"><strong>Berna L. Massingill</strong></a>.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="chapter-1-a-pattern-language-for-parallel-programming"><a class="header" href="#chapter-1-a-pattern-language-for-parallel-programming">Chapter 1 A Pattern Language for Parallel Programming</a></h1>
 <ul>
@@ -837,7 +830,7 @@ fn always_false(x: bool) -&gt; bool {
     AS &lt;--&gt; SS[Supporting Structures]
     SS &lt;--&gt; IM[Implementation Mechanisms]
 </pre>
-<footer id="last-change">Last change: 2022-11-06, commit: <a href="https://github.com/lucifer1004/computer-book-notes/commit/0b2cfb2">0b2cfb2</a></footer><div style="break-before: page; page-break-before: always;"></div><h1 id="chapter-2-background-and-jargon-of-parallel-computing"><a class="header" href="#chapter-2-background-and-jargon-of-parallel-computing">Chapter 2 Background and Jargon of Parallel Computing</a></h1>
+<footer id="last-change">Last change: 2023-03-24, commit: <a href="https://github.com/lucifer1004/computer-book-notes/commit/65ebabe">65ebabe</a></footer><div style="break-before: page; page-break-before: always;"></div><h1 id="chapter-2-background-and-jargon-of-parallel-computing"><a class="header" href="#chapter-2-background-and-jargon-of-parallel-computing">Chapter 2 Background and Jargon of Parallel Computing</a></h1>
 <ul>
 <li><a href="patterns_for_parallel_programming/chapter_2.html#21-concurrency-in-parallel-programs-versus-operating-systems">2.1 Concurrency in Parallel Programs versus Operating Systems</a></li>
 <li><a href="patterns_for_parallel_programming/chapter_2.html#22-parallel-architectures-a-brief-introduction">2.2 Parallel Architectures: A Brief Introduction</a>
@@ -913,7 +906,7 @@ fn always_false(x: bool) -&gt; bool {
 <h3 id="262-overlapping-communication-and-computation-and-latency-hiding"><a class="header" href="#262-overlapping-communication-and-computation-and-latency-hiding">2.6.2 Overlapping Communication and Computation and Latency Hiding</a></h3>
 <p>Continue computation instead of waiting for the message idly.</p>
 <h2 id="27-summary"><a class="header" href="#27-summary">2.7 Summary</a></h2>
-<footer id="last-change">Last change: 2022-11-06, commit: <a href="https://github.com/lucifer1004/computer-book-notes/commit/0b2cfb2">0b2cfb2</a></footer><div style="break-before: page; page-break-before: always;"></div><h1 id="chapter-3-the-finding-concurrency-design-space"><a class="header" href="#chapter-3-the-finding-concurrency-design-space">Chapter 3 The Finding Concurrency Design Space</a></h1>
+<footer id="last-change">Last change: 2023-03-24, commit: <a href="https://github.com/lucifer1004/computer-book-notes/commit/65ebabe">65ebabe</a></footer><div style="break-before: page; page-break-before: always;"></div><h1 id="chapter-3-the-finding-concurrency-design-space"><a class="header" href="#chapter-3-the-finding-concurrency-design-space">Chapter 3 The Finding Concurrency Design Space</a></h1>
 <ul>
 <li><a href="patterns_for_parallel_programming/chapter_3.html#31-about-the-design-space">3.1 About the Design Space</a>
 <ul>
@@ -1031,7 +1024,7 @@ fn always_false(x: bool) -&gt; bool {
 <h2 id="36-the-data-sharing-pattern"><a class="header" href="#36-the-data-sharing-pattern">3.6 The Data Sharing Pattern</a></h2>
 <h2 id="37-the-design-evaluation-pattern"><a class="header" href="#37-the-design-evaluation-pattern">3.7 The Design Evaluation Pattern</a></h2>
 <h2 id="38-summary"><a class="header" href="#38-summary">3.8 Summary</a></h2>
-<footer id="last-change">Last change: 2022-11-06, commit: <a href="https://github.com/lucifer1004/computer-book-notes/commit/0b2cfb2">0b2cfb2</a></footer><div style="break-before: page; page-break-before: always;"></div><h1 id="structured-parallel-programming"><a class="header" href="#structured-parallel-programming">Structured Parallel Programming</a></h1>
+<footer id="last-change">Last change: 2023-03-24, commit: <a href="https://github.com/lucifer1004/computer-book-notes/commit/65ebabe">65ebabe</a></footer><div style="break-before: page; page-break-before: always;"></div><h1 id="structured-parallel-programming"><a class="header" href="#structured-parallel-programming">Structured Parallel Programming</a></h1>
 <p>This book contains my notes on <em>Structured Parallel Programming</em> by <a href="https://github.com/mmccool"><strong>Michael McCool</strong></a>, <a href="https://github.com/ArchRobison"><strong>Arch D. Robinson</strong></a> and <a href="https://jamesreinders.com/"><strong>James Reinders</strong></a>.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="chapter-1-introduction"><a class="header" href="#chapter-1-introduction">Chapter 1 Introduction</a></h1>
 <ul>
@@ -1093,7 +1086,7 @@ fn always_false(x: bool) -&gt; bool {
 <h2 id="15-parallel-programming-models"><a class="header" href="#15-parallel-programming-models">1.5 Parallel Programming Models</a></h2>
 <h2 id="16-organization-of-this-book"><a class="header" href="#16-organization-of-this-book">1.6 Organization of this Book</a></h2>
 <h2 id="17-summary"><a class="header" href="#17-summary">1.7 Summary</a></h2>
-<footer id="last-change">Last change: 2022-11-06, commit: <a href="https://github.com/lucifer1004/computer-book-notes/commit/0b2cfb2">0b2cfb2</a></footer>
+<footer id="last-change">Last change: 2023-03-24, commit: <a href="https://github.com/lucifer1004/computer-book-notes/commit/65ebabe">65ebabe</a></footer>
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
@@ -1114,24 +1107,24 @@ fn always_false(x: bool) -&gt; bool {
 
 
 
-        <script type="text/javascript">
+        <script>
             window.playground_copyable = true;
         </script>
 
 
-        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
-        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
-        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
 
-        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
-        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
-        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
 
         <!-- Custom JS scripts -->
-        <script type="text/javascript" src="mermaid.min.js"></script>
-        <script type="text/javascript" src="mermaid-init.js"></script>
+        <script src="mermaid.min.js"></script>
+        <script src="mermaid-init.js"></script>
 
-        <script type="text/javascript">
+        <script>
         window.addEventListener('load', function() {
             MathJax.Hub.Register.StartupHook('End', function() {
                 window.setTimeout(window.print, 100);
@@ -1139,5 +1132,6 @@ fn always_false(x: bool) -&gt; bool {
         });
         </script>
 
+    </div>
     </body>
 </html>

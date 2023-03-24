@@ -8,7 +8,6 @@
 
         <!-- Custom HTML head -->
         
-        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#ffffff" />
@@ -34,17 +33,18 @@
         <link rel="stylesheet" href=".././css/mdbook-admonish.css">
 
         <!-- MathJax -->
-        <script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     </head>
     <body>
+    <div id="body-container">
         <!-- Provide site root to javascript -->
-        <script type="text/javascript">
+        <script>
             var path_to_root = "../";
             var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
         </script>
 
         <!-- Work around some values being stored in localStorage wrapped in quotes -->
-        <script type="text/javascript">
+        <script>
             try {
                 var theme = localStorage.getItem('mdbook-theme');
                 var sidebar = localStorage.getItem('mdbook-sidebar');
@@ -60,7 +60,7 @@
         </script>
 
         <!-- Set the theme before any content is loaded, prevents flash -->
-        <script type="text/javascript">
+        <script>
             var theme;
             try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
             if (theme === null || theme === undefined) { theme = default_theme; }
@@ -72,12 +72,14 @@
         </script>
 
         <!-- Hide / unhide sidebar before it is displayed -->
-        <script type="text/javascript">
+        <script>
             var html = document.querySelector('html');
-            var sidebar = 'hidden';
+            var sidebar = null;
             if (document.body.clientWidth >= 1080) {
                 try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
                 sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
             }
             html.classList.remove('sidebar-visible');
             html.classList.add("sidebar-" + sidebar);
@@ -103,7 +105,7 @@
                             <i class="fa fa-paint-brush"></i>
                         </button>
                         <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
-                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
@@ -139,7 +141,7 @@
                 </div>
 
                 <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
-                <script type="text/javascript">
+                <script>
                     document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
                     document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
                     Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
@@ -191,8 +193,7 @@
 </div>
 <p>Here, sets can be finite or infinite.</p>
 <p>Ideally we can consider types to be sets and functions to be mathematical functions between sets. But we will encounter the halting problem since there are functions that never terminate. That is why we introduce \(\bot\), which means a non-terminating computation. So a function with the following signature:</p>
-<pre><code class="language-rust  ignore">fn f(x: bool) -&gt; bool {}
-</code></pre>
+<pre><code class="language-rust  ignore">fn f(x: bool) -&gt; bool {}</code></pre>
 <p>may return <code>true</code>, <code>false</code>, or \(\bot\).</p>
 <p>For example, the following program:</p>
 <pre><code class="language-rust  ignore">fn f(x: bool) -&gt; bool {
@@ -201,8 +202,7 @@
 
 fn main() {
     println!(&quot;{}&quot;, f(true));
-}
-</code></pre>
+}</code></pre>
 <p>compiles but never terminate.</p>
 <p>Such functions are called <strong>partial functions</strong>, as opposed to <strong>total functions</strong>, which return valid results for every possible argument.</p>
 <h2 id="24-why-do-we-need-a-mathematical-model"><a class="header" href="#24-why-do-we-need-a-mathematical-model">2.4 Why Do We Need a Mathematical Model?</a></h2>
@@ -257,8 +257,7 @@ f44 () = 44
 <pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>fn unit&lt;T&gt;(x: T) {}
-<span class="boring">}
-</span></code></pre></pre>
+<span class="boring">}</span></code></pre></pre>
 <p>Two-element set: C++/Rust <code>bool</code>, Haskell <code>Bool</code>. Functions to these two-element sets are called <em>predicates</em>.</p>
 <h2 id="27-challenges"><a class="header" href="#27-challenges">2.7 Challenges</a></h2>
 <h3 id="challenge-21-higher-order-memoize"><a class="header" href="#challenge-21-higher-order-memoize">Challenge 2.1 Higher-order <code>memoize</code></a></h3>
@@ -288,8 +287,7 @@ fn main() {
     let mut f = memoize(|n| 2 * n);
     println!(&quot;{}&quot;, f(20)); // First-time call, evaluated
     println!(&quot;{}&quot;, f(20)); // Memoization used
-}
-</code></pre></pre>
+}</code></pre></pre>
 <h3 id="challenge-22-memoize-rng"><a class="header" href="#challenge-22-memoize-rng">Challenge 2.2 Memoize RNG</a></h3>
 <p>This cannot be reached.</p>
 <h3 id="challenge-23-memoize-rng-with-seed"><a class="header" href="#challenge-23-memoize-rng-with-seed">Challenge 2.3 Memoize RNG with seed</a></h3>
@@ -307,8 +305,7 @@ fn main() {
     println!(&quot;{}&quot;, memoized_rng(0));
     println!(&quot;{}&quot;, memoized_rng(1));
     println!(&quot;{}&quot;, memoized_rng(1));
-}
-</code></pre>
+}</code></pre>
 <h3 id="challenge-24-which-is-pure"><a class="header" href="#challenge-24-which-is-pure">Challenge 2.4 Which is pure</a></h3>
 <p>The factorial function is pure. Other functions have side effects (input, output, global state).</p>
 <h3 id="challenge-25-bool-to-bool"><a class="header" href="#challenge-25-bool-to-bool">Challenge 2.5 Bool to Bool</a></h3>
@@ -329,8 +326,7 @@ fn always_true(x: bool) -&gt; bool {
 fn always_false(x: bool) -&gt; bool {
     false
 }
-<span class="boring">}
-</span></code></pre></pre>
+<span class="boring">}</span></code></pre></pre>
 <h3 id="challenge-26-draw-category"><a class="header" href="#challenge-26-draw-category">Challenge 2.6 Draw category</a></h3>
 <pre class="mermaid">flowchart LR
     Void
@@ -345,7 +341,7 @@ fn always_false(x: bool) -&gt; bool {
     Bool --&gt;|true| Bool
     Bool --&gt;|false| Bool
 </pre>
-<footer id="last-change">Last change: 2022-11-06, commit: <a href="https://github.com/lucifer1004/computer-book-notes/commit/0b2cfb2">0b2cfb2</a></footer>
+<footer id="last-change">Last change: 2023-03-24, commit: <a href="https://github.com/lucifer1004/computer-book-notes/commit/65ebabe">65ebabe</a></footer>
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
@@ -378,23 +374,24 @@ fn always_false(x: bool) -&gt; bool {
 
 
 
-        <script type="text/javascript">
+        <script>
             window.playground_copyable = true;
         </script>
 
 
-        <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
-        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
-        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../elasticlunr.min.js"></script>
+        <script src="../mark.min.js"></script>
+        <script src="../searcher.js"></script>
 
-        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
-        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
-        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../clipboard.min.js"></script>
+        <script src="../highlight.js"></script>
+        <script src="../book.js"></script>
 
         <!-- Custom JS scripts -->
-        <script type="text/javascript" src="../mermaid.min.js"></script>
-        <script type="text/javascript" src="../mermaid-init.js"></script>
+        <script src="../mermaid.min.js"></script>
+        <script src="../mermaid-init.js"></script>
 
 
+    </div>
     </body>
 </html>
