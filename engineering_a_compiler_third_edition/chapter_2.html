@@ -158,13 +158,27 @@
 <ul>
 <li><a href="#221-a-formalism-for-recognizers">2.2.1 A Formalism for Recognizers</a></li>
 <li><a href="#222-recognizing-more-complex-words">2.2.2 Recognizing More Complex Words</a></li>
-<li><a href="#questions">Questions</a>
-<ul>
-<li><a href="#question-1-identifier-fa">Question 1 Identifier FA</a></li>
-<li><a href="#question-2-pascal-comment-fa">Question 2 PASCAL comment FA</a></li>
+<li><a href="#question-221-identifier-fa">Question 2.2.1 Identifier FA</a></li>
+<li><a href="#question-222-pascal-comment-fa">Question 2.2.2 PASCAL comment FA</a></li>
 </ul>
 </li>
-<li><a href="#23-regular-expressions">2.3 Regular Expressions</a></li>
+<li><a href="#23-regular-expressions">2.3 Regular Expressions</a>
+<ul>
+<li><a href="#231-formalizing-the-notation">2.3.1 Formalizing the Notation</a></li>
+<li><a href="#232-examples-of-regular-expressions">2.3.2 Examples of Regular Expressions</a></li>
+<li><a href="#233-closure-properties-of-res">2.3.3 Closure Properties of REs</a></li>
+</ul>
+</li>
+<li><a href="#24-from-regular-expression-to-scanner">2.4 From Regular Expression to Scanner</a>
+<ul>
+<li><a href="#241-nondeterministic-finite-automata">2.4.1 Nondeterministic Finite Automata</a></li>
+<li><a href="#242-re-to-nfa-thompsons-construction">2.4.2 RE to NFA: Thompson's Construction</a></li>
+<li><a href="#243-nfa-to-dfa-the-subset-construction">2.4.3 NFA to DFA: The Subset Construction</a>
+<ul>
+<li><a href="#fixed-point-computations">Fixed-Point Computations</a></li>
+</ul>
+</li>
+<li><a href="#244-dfa-to-minimal-dfa">2.4.4 DFA to Minimal DFA</a></li>
 </ul>
 </li>
 </ul>
@@ -189,8 +203,7 @@
 <li>\(S_A\) is the set of accepting states.</li>
 </ul>
 <h3 id="222-recognizing-more-complex-words"><a class="header" href="#222-recognizing-more-complex-words">2.2.2 Recognizing More Complex Words</a></h3>
-<h3 id="questions"><a class="header" href="#questions">Questions</a></h3>
-<h4 id="question-1-identifier-fa"><a class="header" href="#question-1-identifier-fa">Question 1 Identifier FA</a></h4>
+<h3 id="question-221-identifier-fa"><a class="header" href="#question-221-identifier-fa">Question 2.2.1 Identifier FA</a></h3>
 <pre class="mermaid">flowchart LR
     S((s_0))
     M(((s_1)))
@@ -206,7 +219,7 @@
     T3--&gt;|0...9|T4
     T4--&gt;|0...9|T5
 </pre>
-<h4 id="question-2-pascal-comment-fa"><a class="header" href="#question-2-pascal-comment-fa">Question 2 PASCAL comment FA</a></h4>
+<h3 id="question-222-pascal-comment-fa"><a class="header" href="#question-222-pascal-comment-fa">Question 2.2.2 PASCAL comment FA</a></h3>
 <pre class="mermaid">flowchart LR
     S((s_0))
     M((s_1))
@@ -215,8 +228,58 @@
     M--&gt;|&quot;∑-}&quot;|M
     M--&gt;|&quot;}&quot;|T
 </pre>
-<h3 id="23-regular-expressions"><a class="header" href="#23-regular-expressions">2.3 Regular Expressions</a></h3>
-<footer id="last-change">Last change: 2023-03-24, commit: <a href="https://github.com/lucifer1004/computer-book-notes/commit/65ebabe">65ebabe</a></footer>
+<h2 id="23-regular-expressions"><a class="header" href="#23-regular-expressions">2.3 Regular Expressions</a></h2>
+<p>The set of words accepted by a finite automaton \(F\) forms a language \(L(F)\). Any language described by an RE is considered a <strong>regular language</strong>.</p>
+<h3 id="231-formalizing-the-notation"><a class="header" href="#231-formalizing-the-notation">2.3.1 Formalizing the Notation</a></h3>
+<p>Three basic operations:</p>
+<ul>
+<li>Alternation: commutative.</li>
+<li>Concatenation</li>
+<li>Closure: A Kleene closure (*) denotes zero or more repetitions of the preceding expression. Closures with an upper bound for repetitions are called finite closures.</li>
+</ul>
+<p>Precedence: Parentheses &gt; Closure &gt; Concatenation &gt; Alternation</p>
+<h3 id="232-examples-of-regular-expressions"><a class="header" href="#232-examples-of-regular-expressions">2.3.2 Examples of Regular Expressions</a></h3>
+<div id="admonition-quote" class="admonition quote">
+<div class="admonition-title">
+<p>Quote</p>
+<p><a class="admonition-anchor-link" href="#admonition-quote"></a></p>
+</div>
+<div>
+<p>The cost of operating an FA is proportional to the length of the input, not to the complexity of the RE or the number of states in the FA.</p>
+</div>
+</div>
+<h3 id="233-closure-properties-of-res"><a class="header" href="#233-closure-properties-of-res">2.3.3 Closure Properties of REs</a></h3>
+<ul>
+<li>REs are closed under concatenation, union, and closure.</li>
+</ul>
+<h2 id="24-from-regular-expression-to-scanner"><a class="header" href="#24-from-regular-expression-to-scanner">2.4 From Regular Expression to Scanner</a></h2>
+<h3 id="241-nondeterministic-finite-automata"><a class="header" href="#241-nondeterministic-finite-automata">2.4.1 Nondeterministic Finite Automata</a></h3>
+<p>In Nondeterministic Finite Automata (NFA), transition functions can be multivalued and can include \(\epsilon\)-transitions.</p>
+<p>There are two distinct models for NFAs, which are different in the behavior when the NFA must make a nondeterministic choice:</p>
+<ul>
+<li>Follow the transition that leads to an accepting state.</li>
+<li>Clone itself to pursue each possible transition.</li>
+</ul>
+<div id="admonition-quote-1" class="admonition quote">
+<div class="admonition-title">
+<p>Quote</p>
+<p><a class="admonition-anchor-link" href="#admonition-quote-1"></a></p>
+</div>
+<div>
+<ul>
+<li>Any DFA is a special case of an NFA.</li>
+<li>Any NFA can be simulated by a DFA.</li>
+</ul>
+</div>
+</div>
+<h3 id="242-re-to-nfa-thompsons-construction"><a class="header" href="#242-re-to-nfa-thompsons-construction">2.4.2 RE to NFA: Thompson's Construction</a></h3>
+<p>Thompson's construction uses a simple, template-driven process to build up an NFA from smaller NFAs.</p>
+<h3 id="243-nfa-to-dfa-the-subset-construction"><a class="header" href="#243-nfa-to-dfa-the-subset-construction">2.4.3 NFA to DFA: The Subset Construction</a></h3>
+<p>The subset construction is actually a Breadth-First Search (BFS).</p>
+<h4 id="fixed-point-computations"><a class="header" href="#fixed-point-computations">Fixed-Point Computations</a></h4>
+<p>The validity of the subsect construction algorithm is based on the fact that set union is both commutative and associative.</p>
+<h3 id="244-dfa-to-minimal-dfa"><a class="header" href="#244-dfa-to-minimal-dfa">2.4.4 DFA to Minimal DFA</a></h3>
+<footer id="last-change">Last change: 2023-04-18, commit: <a href="https://github.com/lucifer1004/computer-book-notes/commit/c74863c">c74863c</a></footer>
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
